@@ -38,11 +38,20 @@ Assert.assertEquals(actualResultPassword, expectedResultPassword);
     }
     @Test
     public void displaysErrorsWhenPasswordIsWrong(){
+homePage.openLogin();
+String email = "admin@admin.com";
+String password = faker.internet().password();
+loginPage.login(email, password);
+String expectedMessage = "Wrong password";
+String actualMessage = loginPage.getMessagePasswordStatus().getText();
+Assert.assertEquals(expectedMessage, actualMessage);
 
     }
     @Test
 
     public void login(String email, String password){
+
+        homePage.openLogin();
 
     }
 
