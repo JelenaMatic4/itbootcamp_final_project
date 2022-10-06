@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.AdmPage;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -18,6 +19,7 @@ public class Base {
     protected HomePage homePage;
     protected LoginPage loginPage;
     protected Faker faker;
+    protected AdmPage adminPage;
 
     @BeforeClass
     public void beforeClass() {
@@ -27,12 +29,12 @@ public class Base {
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
         faker = new Faker();
-        driverWait = new WebDriverWait(driver,Duration.ofSeconds(10));
-
+        adminPage = new AdmPage(driver,driverWait);
     }
     @BeforeMethod
     public void beforeMethode(){
         driver.get("https://vue-demo.daniel-avellaneda.com");
+        driver.manage().window().maximize();
     }
     @AfterClass
     public void afterClass (){

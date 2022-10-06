@@ -1,4 +1,10 @@
 package tests;
 
-public class ProfileTests {
+import org.testng.annotations.Test;
+
+public class ProfileTests extends Base{
+    @Test
+    public void editsProfile (){
+
+    }
 }
