@@ -14,12 +14,12 @@ public class AdmPage extends BasePage {
 
     private By newItemButton = By.className("btnNewItem");
 
-    private By cityNameField = By.className("v-text-field");
+    private By cityNameField = By.id("name");
 
     //v-input v-input--has-state theme--light v-text-field v-text-field--is-booted error--text
     private By saveButton = By.className("btnSave");
 
-    private By infoSave = By.xpath("\"//* [contains (text(), 'Saved successfully')]\"");
+    private By infoSave = By.xpath("//* [contains (text(), ' Saved successfully ')]");
             // Saved successfully
 private By searchField = By.id("search");
 
@@ -67,9 +67,9 @@ private By searchField = By.id("search");
     }
 
     public void enterName(String name) {
-        WebElement cityNameField = getCityNameField();
-        cityNameField.click();
-        cityNameField.sendKeys(name);
+        WebElement cityNameField1 = getCityNameField();
+        //cityNameField1.click();
+        cityNameField1.sendKeys(name);
     }
 
     public void clickSaveButton () {

@@ -7,33 +7,33 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.AdmPage;
-import pages.CityPage;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 
 import java.time.Duration;
 
 public class Base {
     private WebDriver driver;
-    private WebDriverWait driverWait;
+    protected WebDriverWait driverWait;
     protected HomePage homePage;
     protected LoginPage loginPage;
     protected Faker faker;
     protected AdmPage adminPage;
 
     protected CityPage cityPage;
+    protected SignupPage signupPage;
 
     @BeforeClass
     public void beforeClass() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\jelena84\\Downloads\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
+        driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
         faker = new Faker();
         adminPage = new AdmPage(driver,driverWait);
         cityPage = new CityPage(driver, driverWait);
+        signupPage = new SignupPage(driver, driverWait);
     }
     @BeforeMethod
     public void beforeMethode(){

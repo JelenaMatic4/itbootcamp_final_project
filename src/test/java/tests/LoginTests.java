@@ -53,16 +53,22 @@ Assert.assertEquals(actualResultURL,expectedResultURL);
     }
     @Test
 
-    public void login(String email, String password){
+    public void loginTest (){
         homePage.openLogin();
-        loginPage.login("admin@admin.com", "12345");
-        Assert.assertEquals("https://vue-demo.daniel-avellaneda.com/home",loginPage.getDriver().getCurrentUrl());
+        loginPage.login ("admin@admin.com","12345" );
+        driverWait.until(ExpectedConditions.urlToBe("https://vue-demo.daniel-avellaneda.com/home"));
+        String actualURL = loginPage.getDriver().getCurrentUrl();
+        System.out.println(actualURL);
+        String expectedURL = "https://vue-demo.daniel-avellaneda.com/home";
+        Assert.assertEquals(actualURL,expectedURL);
     }
-
     @Test
 
     public void logout(){
-
+        homePage.openLogin();
+        loginPage.login("admin@admin.com", "12345");
+        driverWait.until(ExpectedConditions.urlToBe("https://vue-demo.daniel-avellaneda.com/home"));
+        Assert.assertTrue(homePage.getLogoutButton().isDisplayed());
     }
 
 

@@ -31,10 +31,6 @@ public class AdminCitiesTests extends Base {
         adminPage.clickCitiesButton();
         adminPage.clickNewItemButton();
         String city = faker.address().city();
-        try {
-            Thread.sleep(3000);} catch (InterruptedException e){
-            e.printStackTrace();
-        }
         adminPage.enterName(city);
         adminPage.clickSaveButton();
         String expectedResultMessage = "Saved successfully";
@@ -54,15 +50,11 @@ public class AdminCitiesTests extends Base {
         Assert.assertTrue(actualMessage.contains(expectedMessage));
         //wait.until(ExpectedConditions.textToBe(By.xpath("//*[@id='app']/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]"),
         //        "Saved successfully\nCLOSE"));
-
-
         //Finding number of Rows
         //List<WebElement> rowsNumber = driver.findElements(By.xpath("//*[@id="content-8b4988b9-2ec9-4e77-9b4d-9c2994bd9e8a"]/div/div/table[1]/tbody/tr[1]/td[1]"));
         // int rowCount = rowsNumber.size();
-
         //
         //Finding number of Columns
-
         //List<WebElement> columnsNumber = driver.findElements(By.xpath("//*[@id="content-8b4988b9-2ec9-4e77-9b4d-9c2994bd9e8a"]/div/div/table[1]/thead/tr/th[1]"));
         //int columnCount = columnsNumber.size();
         //System.out.println("No of columns in this table : " + columnCount);
@@ -80,6 +72,7 @@ public class AdminCitiesTests extends Base {
     }
     @Test
     public void deleteCity (){
+
 
     }
 }
