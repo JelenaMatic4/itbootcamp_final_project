@@ -21,6 +21,7 @@ public class Base {
 
     protected CityPage cityPage;
     protected SignupPage signupPage;
+    protected ProfilePage profilePage;
 
     @BeforeClass
     public void beforeClass() {
@@ -31,9 +32,10 @@ public class Base {
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
         faker = new Faker();
-        adminPage = new AdmPage(driver,driverWait);
-        cityPage = new CityPage(driver, driverWait);
-        signupPage = new SignupPage(driver, driverWait);
+        adminPage = new AdmPage (driver,driverWait);
+        cityPage = new CityPage (driver, driverWait);
+        signupPage = new SignupPage (driver, driverWait);
+        profilePage = new ProfilePage (driver, driverWait);
     }
     @BeforeMethod
     public void beforeMethode(){

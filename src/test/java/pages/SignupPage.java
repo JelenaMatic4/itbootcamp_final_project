@@ -19,6 +19,7 @@ public class SignupPage extends BasePage{
 
     private By alertMessage = By.xpath(("//*[contains (text(), ' IMPORTANT: Verify your account ')]"));
     ////*[@id="app"]/div[4]/div/div/div[1]
+    private By closeButton = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[3]/button");
     public SignupPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
@@ -46,6 +47,9 @@ public class SignupPage extends BasePage{
     public WebElement getAlertMessage(){
         return getDriver().findElement(alertMessage);
     }
+    public WebElement getCloseButton (){
+        return getDriver().findElement(closeButton);
+    }
     public void clickSignup (){
         WebElement signUpButton = getSignupButton();
         signUpButton.click();
@@ -61,6 +65,11 @@ public class SignupPage extends BasePage{
         confirmPasswordEl.sendKeys(confirmPassword);
         WebElement signMeUpButton1 = getSignMeUpButton();
         signMeUpButton1.click();
+    }
+
+    public void clickCloseButton (){
+        WebElement closeButtonEl = getCloseButton();
+        closeButtonEl.click();
     }
 
 }
