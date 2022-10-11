@@ -7,14 +7,15 @@ import org.testng.annotations.Test;
 
 public class SignUpTests extends Base {
     @Test
-    public void visitsTheSignupPage(){
+    public void visitsTheSignupPage() {
         signupPage.clickSignup();
-        String expectedURL ="https://vue-demo.daniel-avellaneda.com/signup";
+        String expectedURL = "https://vue-demo.daniel-avellaneda.com/signup";
         String actualURL = signupPage.getDriver().getCurrentUrl();
-        Assert.assertEquals(expectedURL,actualURL);
+        Assert.assertEquals(expectedURL, actualURL);
     }
+
     @Test
-    public void checksInputFields(){
+    public void checksInputFields() {
         signupPage.clickSignup();
         String expectedEmailSignup = "email";
         String expectedPasswordSignup = "password";
@@ -24,11 +25,12 @@ public class SignUpTests extends Base {
         String actualConfirmPasswordSignup = signupPage.getPasswordConfirmField().getAttribute("type");
         Assert.assertEquals(actualEmailSignup, expectedEmailSignup);
         Assert.assertEquals(actualPasswordSignup, expectedPasswordSignup);
-        Assert.assertEquals(actualConfirmPasswordSignup,expectedConfirmPasswordSignup);
+        Assert.assertEquals(actualConfirmPasswordSignup, expectedConfirmPasswordSignup);
 
     }
+
     @Test
-    public void displaysErrorWhenUserAlreadyExists(){
+    public void displaysErrorWhenUserAlreadyExists() {
         signupPage.clickSignup();
         String name = "Test Test";
         String email = "admin@admin.com";
@@ -43,17 +45,18 @@ public class SignUpTests extends Base {
         String actualURL = signupPage.getDriver().getCurrentUrl();
         Assert.assertEquals(expectedURL, actualURL);
     }
+
     @Test
-    public void signUp (){
+    public void signUp() {
         signupPage.clickSignup();
         String name = "Jelena Matic";
         String email = faker.internet().emailAddress();
         String password = "123654";
         String confirmPassword = "123654";
         signupPage.enterData(name, email, password, confirmPassword);
-String expectedAlert = "IMPORTANT: Verify your account";
-String actualAlert = signupPage.getAlertMessage().getText();
-Assert.assertEquals(expectedAlert, actualAlert);
+        String expectedAlert = "IMPORTANT: Verify your account";
+        String actualAlert = signupPage.getAlertMessage().getText();
+        Assert.assertEquals(expectedAlert, actualAlert);
 
 
     }

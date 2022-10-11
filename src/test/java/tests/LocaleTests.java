@@ -5,28 +5,30 @@ import org.testng.annotations.Test;
 
 public class LocaleTests extends Base {
     @Test
-    public void setLocaleToES (){
+    public void setLocaleToES() {
         homePage.clickLanguageButton();
-        homePage.changeLanguageES();
+        homePage.changeLanguageES("ES");
         String expectedTitle = "Página de aterrizaje";
-        String actualTitle = homePage.getDriver(). getTitle();
+        String actualTitle = homePage.getTitleField().getText();
         Assert.assertTrue(actualTitle.contains(expectedTitle));
     }
+
     @Test
-    public void setLocaleToEN (){
+    public void setLocaleToEN() {
         homePage.clickLanguageButton();
-        homePage.changeLanguageEN();
-        String expectedTitle ="Landing";
-        String actualTitle = homePage.getDriver().getTitle();
+        homePage.changeLanguageEN("EN");
+        String expectedTitle = "Landing";
+        String actualTitle = homePage.getTitleField().getText();
         Assert.assertTrue(actualTitle.contains(expectedTitle));
     }
+
     @Test
-    public void setLocaleToFR (){
+    public void setLocaleToFR() {
         homePage.clickLanguageButton();
-        homePage.changeLanguageFR();
+        homePage.changeLanguageFR("FR");
         String expectedTitle = "Page d'atterrissage";
-        String actualTitle = homePage.getDriver().getTitle();
-        Assert.assertTrue(actualTitle.contains(expectedTitle));
+        String actualTitle = homePage.getTitleField().getText();
+        Assert.assertEquals(actualTitle, expectedTitle);
 
     }
 }

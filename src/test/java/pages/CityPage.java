@@ -10,6 +10,8 @@ import java.util.List;
 
 public class CityPage extends BasePage {
     private By editButton = By.xpath("//*[@id=\"edit\"]");
+
+    private By deleteButton = By.id("delete");
     private By nameField = By.id("name");
     private By saveButton = By.className("btnSave");
 
@@ -18,40 +20,52 @@ public class CityPage extends BasePage {
     private By searchField = By.id("search");
 
     public CityPage(WebDriver driver, WebDriverWait driverWait) {
+
         super(driver, driverWait);
     }
 
-        public WebElement getEditButton (){
-            return getDriver().findElement(editButton);
+    public WebElement getEditButton() {
+        return getDriver().findElement(editButton);
     }
 
+    public WebElement getDeleteButton() {
+        return getDriver().findElement(deleteButton);
+    }
 
     public WebElement getNameField() {
+
         return getDriver().findElement(nameField);
     }
-    public WebElement getSaveButton (){
+
+    public WebElement getSaveButton() {
         return getDriver().findElement(saveButton);
     }
-    public WebElement getInfoMessage(){
+
+    public WebElement getInfoMessage() {
         return getDriver().findElement(infoMessage);
     }
-    public WebElement getSearchField (){
+
+    public WebElement getSearchField() {
         return getDriver().findElement(searchField);
     }
 
-    public void editCity (String edited){
+    public void editCity(String edited) {
         WebElement editButtonEl = getEditButton();
         editButtonEl.click();
         WebElement nameFieldEl = getNameField();
         nameFieldEl.sendKeys(edited);
         WebElement saveButtonEl = getSaveButton();
-        saveButtonEl.click ();
-
-
+        saveButtonEl.click();
     }
-    public void searchCity (String cityName){
+
+    public void searchCity(String cityName) {
         WebElement searchFieldEl = getSearchField();
         searchFieldEl.sendKeys(cityName);
+    }
+
+    public void deleteCity(String cityName) {
+        WebElement deleteButtonEl = getDeleteButton();
+        deleteButtonEl.click();
     }
 
 }

@@ -4,9 +4,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTests extends Base{
+public class LoginTests extends Base {
     @Test
-    public void visitTheLogInPage () {
+    public void visitTheLogInPage() {
 
         homePage.openLogin();
         String expectedResult = "https://vue-demo.daniel-avellaneda.com/login";
@@ -14,57 +14,61 @@ public class LoginTests extends Base{
         Assert.assertEquals(expectedResult, actualResult);
     }
 
-        @Test
-        public void checkInputTypes () {
-            homePage.openLogin();
-            String expectedResultEmail = "email";
-String expectedResultPassword = "password";
-String actualResultEmail = loginPage.getEmail().getAttribute("type");
-String actualResultPassword = loginPage.getPassword().getAttribute("type");
-Assert.assertEquals(actualResultEmail, expectedResultEmail);
-Assert.assertEquals(actualResultPassword, expectedResultPassword);
-    }
     @Test
-    public void displaysErrorsWhenUserDoesNotExist (){
+    public void checkInputTypes() {
+        homePage.openLogin();
+        String expectedResultEmail = "email";
+        String expectedResultPassword = "password";
+        String actualResultEmail = loginPage.getEmail().getAttribute("type");
+        String actualResultPassword = loginPage.getPassword().getAttribute("type");
+        Assert.assertEquals(actualResultEmail, expectedResultEmail);
+        Assert.assertEquals(actualResultPassword, expectedResultPassword);
+    }
+
+    @Test
+    public void displaysErrorsWhenUserDoesNotExist() {
         homePage.openLogin();
         String randomEmail = faker.internet().emailAddress();
-        String randomPassword =faker.internet().password();
-        loginPage.login(randomEmail,randomPassword);
+        String randomPassword = faker.internet().password();
+        loginPage.login(randomEmail, randomPassword);
         String expectedResultLogin = "User does not exists";
         String actualResultLogin = loginPage.getMessageStatus().getText();
         String expectedResultURL = "https://vue-demo.daniel-avellaneda.com/login";
         String actualResultURL = homePage.getDriver().getCurrentUrl();
-        Assert.assertEquals(actualResultURL,expectedResultURL);
+        Assert.assertEquals(actualResultURL, expectedResultURL);
         Assert.assertEquals(expectedResultLogin, actualResultLogin);
 
     }
+
     @Test
-    public void displaysErrorsWhenPasswordIsWrong(){
-homePage.openLogin();
-String email = "admin@admin.com";
-String password = faker.internet().password();
-loginPage.login(email, password);
-String expectedMessage = "Wrong password";
-String actualMessage = loginPage.getMessagePasswordStatus().getText();
-Assert.assertEquals(expectedMessage, actualMessage);
-String expectedResultURL = "https://vue-demo.daniel-avellaneda.com/login";
-String actualResultURL = homePage.getDriver().getCurrentUrl();
-Assert.assertEquals(actualResultURL,expectedResultURL);
+    public void displaysErrorsWhenPasswordIsWrong() {
+        homePage.openLogin();
+        String email = "admin@admin.com";
+        String password = faker.internet().password();
+        loginPage.login(email, password);
+        String expectedMessage = "Wrong password";
+        String actualMessage = loginPage.getMessagePasswordStatus().getText();
+        Assert.assertEquals(expectedMessage, actualMessage);
+        String expectedResultURL = "https://vue-demo.daniel-avellaneda.com/login";
+        String actualResultURL = homePage.getDriver().getCurrentUrl();
+        Assert.assertEquals(actualResultURL, expectedResultURL);
     }
+
     @Test
 
-    public void loginTest (){
+    public void loginTest() {
         homePage.openLogin();
-        loginPage.login ("admin@admin.com","12345" );
+        loginPage.login("admin@admin.com", "12345");
         driverWait.until(ExpectedConditions.urlToBe("https://vue-demo.daniel-avellaneda.com/home"));
         String actualURL = loginPage.getDriver().getCurrentUrl();
         System.out.println(actualURL);
         String expectedURL = "https://vue-demo.daniel-avellaneda.com/home";
-        Assert.assertEquals(actualURL,expectedURL);
+        Assert.assertEquals(actualURL, expectedURL);
     }
+
     @Test
 
-    public void logout(){
+    public void logout() {
         homePage.openLogin();
         loginPage.login("admin@admin.com", "12345");
         driverWait.until(ExpectedConditions.urlToBe("https://vue-demo.daniel-avellaneda.com/home"));
@@ -72,6 +76,6 @@ Assert.assertEquals(actualResultURL,expectedResultURL);
     }
 
 
-    }
+}
 
 

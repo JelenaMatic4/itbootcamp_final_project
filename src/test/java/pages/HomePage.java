@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
     public By loginButton = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]");
     public By adminButton = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[1]");
@@ -18,81 +18,90 @@ public class HomePage extends BasePage{
     public By logoutButton = By.className("btnLogout");
 
     public By languageButton = By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button");
-    ////*[@id="app"]/div[2]/div
-    ////*[@id="app"]/div[2]
-public By enButton = By.className("btnEN");
-public By esButton = By.id("list-item-95");
-public By frButton = By.id("list-item-97");
+
+    public By titleField = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1");
+
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
+
         super(driver, driverWait);
     }
 
-    public WebElement getLoginButton(){
+    public WebElement getLoginButton() {
+
         return getDriver().findElement(loginButton);
     }
 
-    public WebElement getAdminButton(){
+    public WebElement getAdminButton() {
+
         return getDriver().findElement(adminButton);
     }
-    public WebElement getLogoutButton (){
+
+    public WebElement getLogoutButton() {
+
         return getDriver().findElement(logoutButton);
     }
-    public WebElement getLanguageButton (){
-        return getDriver().findElement(languageButton) ;
-    }
-    public WebElement getEsButton (){
-        return getDriver().findElement(esButton);
-    }
-    public WebElement getEnButton (){
-        return getDriver().findElement(enButton);
-    }
-    public WebElement getFrButton (){
-        return getDriver().findElement(frButton);
+
+    public WebElement getLanguageButton() {
+        return getDriver().findElement(languageButton);
     }
 
-    public void openLogin (){
+    public WebElement getTitleField() {
+        return getDriver().findElement(titleField);
+    }
+
+
+    public void openLogin() {
 
         WebElement loginButton = getLoginButton();
         loginButton.click();
 
     }
-    public void clickAdminButton () {
+
+    public void clickAdminButton() {
         WebElement adminButton = getAdminButton();
-        adminButton.click();}
-    public void clickLogoutButton (){
-        WebElement logOutButton =getLogoutButton();
+        adminButton.click();
+    }
+
+    public void clickLogoutButton() {
+        WebElement logOutButton = getLogoutButton();
         logOutButton.click();
     }
 
-    public void  clickLanguageButton (){
+    public void clickLanguageButton() {
         WebElement languagesButton = getLanguageButton();
         languagesButton.click();
     }
-    public void changeLanguageES (){
-List <WebElement> languagesBtn = getDriver().findElements(By.xpath("//*[@id=\"app\"]/div[2]"));
-        for (int i = 0; i < languagesBtn.size(); i++) {
-            WebElement esButtonEl = languagesBtn.get(1);
-            //boolean esButtonEl1;
-            //if(esButtonEl.isDisplayed()){
-           // esButtonEl = languagesBtn.contains(esButton)
-            esButtonEl.click();}
-    }
-        public void changeLanguageEN (){
-            List <WebElement> languagesBtn = getDriver().findElements(By.xpath("//*[@id=\"app\"]/div[2]/div"));
-            for (int i = 0; i < languagesBtn.size(); i++) {
-                WebElement enButtonEl = languagesBtn.get(0);
-                enButtonEl.click();}
-        //WebElement enLanguageBtn = getEnButton();
-        //enLanguageBtn.click();
-        }
-        public void changeLanguageFR (){
-            List <WebElement> languagesBtn = getDriver().findElements(By.xpath("//*[@id=\"app\"]/div[2]/div"));
-            for (int i = 0; i < languagesBtn.size(); i++) {
-                WebElement frButtonEl = languagesBtn.get(2);
-                frButtonEl.click();}
-        // WebElement frLanguageBtn = getFrButton();
-        //frLanguageBtn.click();
+
+
+    public void changeLanguageES(String languageID) {
+        List<WebElement> languageList = getDriver().findElements(By.className("v-list-item"));
+        for (int i = 0; i < languageList.size(); i++) {
+            if (languageList.get(i).getText().contains(languageID.toUpperCase())) {
+                languageList.get(i).click();
+            }
         }
     }
+
+    public void changeLanguageEN(String languageID) {
+        List<WebElement> languageList = getDriver().findElements(By.className("v-list-item"));
+        for (int i = 0; i < languageList.size(); i++) {
+            if (languageList.get(i).getText().contains(languageID.toUpperCase())) {
+                languageList.get(i).click();
+            }
+        }
+    }
+
+    public void changeLanguageFR(String languageID) {
+        List<WebElement> languageList = getDriver().findElements(By.className("v-list-item"));
+        for (int i = 0; i < languageList.size(); i++) {
+            if (languageList.get(i).getText().contains(languageID.toUpperCase())) {
+                languageList.get(i).click();
+            }
+        }
+    }
+
+
+}
+
 
 

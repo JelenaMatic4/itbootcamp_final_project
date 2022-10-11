@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SignupPage extends BasePage{
+public class SignupPage extends BasePage {
     private By signupButton = By.xpath("//*[@id=\"app\"]/div/div/header/div/div[3]/a[4]");
-////*[@id="app"]/div/div/header/div/div[3]/a[4]
+    ////*[@id="app"]/div/div/header/div/div[3]/a[4]
     private By signMeUpButton = By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button");
     private By emailField = By.xpath("//*[@id=\"email\"]");
     private By passwordField = By.xpath("//*[@id=\"password\"]");
@@ -20,44 +20,65 @@ public class SignupPage extends BasePage{
     private By alertMessage = By.xpath(("//*[contains (text(), ' IMPORTANT: Verify your account ')]"));
     ////*[@id="app"]/div[4]/div/div/div[1]
     private By closeButton = By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[3]/button");
+
     public SignupPage(WebDriver driver, WebDriverWait driverWait) {
+
         super(driver, driverWait);
     }
-    public WebElement getSignupButton (){
+
+    public WebElement getSignupButton() {
+
         return getDriver().findElement(signupButton);
     }
-    public WebElement getEmailField (){
+
+    public WebElement getEmailField() {
+
         return getDriver().findElement(emailField);
     }
-    public WebElement getPasswordField (){
+
+    public WebElement getPasswordField() {
+
         return getDriver().findElement(passwordField);
     }
-    public WebElement getPasswordConfirmField (){
+
+    public WebElement getPasswordConfirmField() {
+
         return getDriver().findElement(passwordConfirmField);
     }
-    public WebElement getSignMeUpButton (){
+
+    public WebElement getSignMeUpButton() {
+
         return getDriver().findElement(signMeUpButton);
     }
-    public WebElement getNameField(){
+
+    public WebElement getNameField() {
         return getDriver().findElement(nameField);
     }
-    public WebElement getMessageBox (){
+
+    public WebElement getMessageBox() {
         return getDriver().findElement(messageBox);
     }
-    public WebElement getAlertMessage(){
+
+    public WebElement getAlertMessage() {
+
         return getDriver().findElement(alertMessage);
     }
-    public WebElement getCloseButton (){
+
+    public WebElement getCloseButton() {
         return getDriver().findElement(closeButton);
     }
-    public void clickSignup (){
+
+    public void clickSignup() {
         WebElement signUpButton = getSignupButton();
         signUpButton.click();
     }
-    public void enterData (String name, String email, String password, String confirmPassword){
+
+    public void enterData(String name, String email, String password, String confirmPassword) {
         WebElement nameFieldEl = getNameField();
+        nameFieldEl.clear();
         nameFieldEl.sendKeys(name);
         WebElement emailFieldEl = getEmailField();
+        emailFieldEl.clear();
         emailFieldEl.sendKeys(email);
         WebElement passwordFieldEl = getPasswordField();
         passwordFieldEl.sendKeys(password);
@@ -67,7 +88,7 @@ public class SignupPage extends BasePage{
         signMeUpButton1.click();
     }
 
-    public void clickCloseButton (){
+    public void clickCloseButton() {
         WebElement closeButtonEl = getCloseButton();
         closeButtonEl.click();
     }

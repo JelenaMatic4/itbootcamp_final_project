@@ -20,8 +20,8 @@ public class AdmPage extends BasePage {
     private By saveButton = By.className("btnSave");
 
     private By infoSave = By.xpath("//* [contains (text(), ' Saved successfully ')]");
-            // Saved successfully
-private By searchField = By.id("search");
+    // Saved successfully
+    private By searchField = By.id("search");
 
 
     public AdmPage(WebDriver driver, WebDriverWait driverWait) {
@@ -29,6 +29,7 @@ private By searchField = By.id("search");
     }
 
     public WebElement getLogoutButton() {
+
         return getDriver().findElement(logoutButton);
     }
 
@@ -38,22 +39,27 @@ private By searchField = By.id("search");
     }
 
     public WebElement getNewItemButton() {
+
         return getDriver().findElement(newItemButton);
     }
 
     public WebElement getCityNameField() {
+
         return getDriver().findElement(cityNameField);
     }
-        public WebElement getSaveButton () {
-            return getDriver().findElement(saveButton);
 
-        }
-        public WebElement getInfoSave (){
+    public WebElement getSaveButton() {
+        return getDriver().findElement(saveButton);
+
+    }
+
+    public WebElement getInfoSave() {
         return getDriver().findElement(infoSave);
-        }
-        public WebElement getSearchField (){
+    }
+
+    public WebElement getSearchField() {
         return getDriver().findElement(searchField);
-        }
+    }
 
 
     public void clickCitiesButton() {
@@ -72,7 +78,7 @@ private By searchField = By.id("search");
         cityNameField1.sendKeys(name);
     }
 
-    public void clickSaveButton () {
+    public void clickSaveButton() {
         WebElement saveButton = getSaveButton();
         saveButton.click();
 
@@ -82,7 +88,7 @@ private By searchField = By.id("search");
 }
 //WebElement cellAddress = Rowtable.findElement(By.xpath(“//*[@id="content-8b4988b9-2ec9-4e77-9b4d-9c2994bd9e8a"]/div/div/table[1]/tbody/tr[4]/td[3]”));
 //String value = cellAddress.getText();
-   // Actions action = new Actions(getDriver());
+// Actions action = new Actions(getDriver());
 
 /*WebElement citiesButton = getDriver().findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[1]"));
 action.moveToElement(citiesButton).click().build().perform();
