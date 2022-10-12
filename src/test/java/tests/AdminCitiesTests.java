@@ -3,6 +3,7 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
@@ -70,12 +71,29 @@ public class AdminCitiesTests extends Base {
         adminPage.clickCitiesButton();
         final String cityName = "Timacus Minus";
         cityPage.searchCity(cityName);
-
+        String expectedCityName = "Timacus Minus - edited";
+        cityPage.findCityField(expectedCityName);
+        String actualCityName = cityPage.getCityNameField().getText();
+        Assert.assertEquals(actualCityName, expectedCityName);
     }
 
     @Test
     public void deleteCity() {
-        cityPage.deleteCity("Timacus Minus -edited");
+        cityPage.searchCity("Timacus Minus");
+        //cityPage.findCityField("Timacus Minus");
+        driverWait.until(ExpectedConditions.numberOfElementsToBe(By.className("v-data-table"), 1));
+        String expectedCityName = "Timacus Minus - edited";
+        String actualCityName = cityPage.getCityNameField().getText();
+        Assert.assertEquals(actualCityName, expectedCityName);
+        //driverWait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]"), "Timacus Minus"));
+        cityPage.deleteCity();
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-dialog")));
+        cityPage.deleteComplete();
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//* [contains (text(), 'Deleted successfully')]")));
+        String expectedDeleteMessage = "Deleted successfully";
+        String actualDeleteMessage = cityPage.getMessageBoxDelete().getText();
+        Assert.assertEquals(expectedDeleteMessage, actualDeleteMessage);
+
 
     }
 }

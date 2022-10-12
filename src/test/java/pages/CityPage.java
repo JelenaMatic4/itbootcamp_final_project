@@ -19,6 +19,16 @@ public class CityPage extends BasePage {
 
     private By searchField = By.id("search");
 
+    private By cityNameField = By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]");
+    ////*[@id="app"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]
+    private By warningBox = By.xpath("//* [contains (text(), 'Do you really want to delete this item?')] ");
+    //Do you really want to delete this item?
+    private By deleteBtnWarningBox = By.xpath("//*[@id=\"app\"]/div[7]/div/div/div[2]/button[2]");
+    ////*[@id="app"]/div[7]/div/div/div[2]/button[2]
+
+    private By messageBoxDelete = By.xpath(" //* [contains (text(), 'Deleted successfully')] ");
+
+    //Deleted successfully
     public CityPage(WebDriver driver, WebDriverWait driverWait) {
 
         super(driver, driverWait);
@@ -45,8 +55,24 @@ public class CityPage extends BasePage {
         return getDriver().findElement(infoMessage);
     }
 
+    public WebElement getDeleteBtnWarningBox() {
+        return getDriver().findElement(deleteBtnWarningBox);
+    }
+
+    public WebElement getMessageBoxDelete() {
+        return getDriver().findElement(messageBoxDelete);
+    }
+
     public WebElement getSearchField() {
+
         return getDriver().findElement(searchField);
+    }
+
+    public WebElement getCityNameField() {
+        return getDriver().findElement(cityNameField);
+    }
+    public WebElement getWarningBox (){
+        return getDriver().findElement(warningBox);
     }
 
     public void editCity(String edited) {
@@ -63,9 +89,24 @@ public class CityPage extends BasePage {
         searchFieldEl.sendKeys(cityName);
     }
 
-    public void deleteCity(String cityName) {
+    public void deleteCity() {
         WebElement deleteButtonEl = getDeleteButton();
         deleteButtonEl.click();
     }
 
+    public void deleteComplete() {
+        getDeleteBtnWarningBox().click();
+    }
+
+    public void findCityField(String cityName) {
+        List<WebElement> tableRow = getDriver().findElements(By.className("v-data-table"));
+        for (int i = 0; i < tableRow.size(); i++) {
+            if (tableRow.get(i).getText().contains(cityName)) {
+                tableRow.get(i).getText();
+            }
+        }
+    }
+
 }
+
+
